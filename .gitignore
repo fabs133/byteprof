@@ -26,3 +26,11 @@ paper/*.synctex.gz
 Thumbs.db
 .vscode/
 .idea/
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.log
+report/*.out
+report/*.fls
+report/*.fdb_latexmk
+report/*.synctex.gz
