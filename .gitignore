@@ -34,3 +34,6 @@ report/*.out
 report/*.fls
 report/*.fdb_latexmk
 report/*.synctex.gz
+
+# build output
+dist/
