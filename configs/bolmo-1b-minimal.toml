@@ -1,0 +1,15 @@
+# Bolmo 1B, local loop + global model graphed, minimal-sync decode loop (decode_loop = minimal).
+model_id = "allenai/Bolmo-1B"
+revision = "452690a8cfab1dd1ec27b74f2667632f17a21b46"
+dtype = "bfloat16"
+device = "cuda"
+prompts_file = "prompts/default.jsonl"
+max_new_bytes = 256
+warmup_runs = 10
+measured_runs = 5
+seed = 1234
+output_dir = "results/minsync/bolmo-minimal"
+optimize = "cuda_graph"
+optimize_global = true
+decode_loop = "minimal"
+compile_backend = "inductor"

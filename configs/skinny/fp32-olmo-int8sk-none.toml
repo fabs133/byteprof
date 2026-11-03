@@ -1,0 +1,18 @@
+# OLMo 2 1B, static KV cache + manual CUDA graph + minimal loop, float32, none
+model_id = "allenai/OLMo-2-0425-1B"
+revision = "a1847dff35000b4271fa70afc5db10fd29fedbdf"
+dtype = "float32"
+device = "cuda"
+prompts_file = "prompts/default.jsonl"
+max_new_bytes = 72
+warmup_runs = 10
+measured_runs = 5
+seed = 1234
+output_dir = "results/skinny/fp32-olmo-int8sk-none"
+optimize = "cuda_graph"
+decode_loop = "minimal"
+
+[quantize]
+target = "blocks"
+scheme = "int8_wo"
+kernel = "skinny"

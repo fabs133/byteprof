@@ -1,0 +1,21 @@
+# Bolmo 1B, graph-global + minimal loop, bf16, drafting kind = none
+model_id = "allenai/Bolmo-1B"
+revision = "452690a8cfab1dd1ec27b74f2667632f17a21b46"
+dtype = "bfloat16"
+device = "cuda"
+prompts_file = "prompts/default.jsonl"
+max_new_bytes = 256
+warmup_runs = 10
+measured_runs = 5
+seed = 1234
+output_dir = "results/skinny/bolmo-g8-none"
+optimize = "cuda_graph"
+optimize_global = true
+decode_loop = "minimal"
+compile_backend = "inductor"
+
+[quantize]
+target = "all"
+scheme = "bf16_wo"
+global_scheme = "int8_wo"
+kernel = "skinny"

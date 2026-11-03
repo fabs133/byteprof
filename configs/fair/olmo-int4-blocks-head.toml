@@ -1,0 +1,18 @@
+# OLMo 2 1B, static KV cache + manual CUDA graph (no torch.compile) + minimal loop, int4 blocks + lm_head
+model_id = "allenai/OLMo-2-0425-1B"
+revision = "a1847dff35000b4271fa70afc5db10fd29fedbdf"
+dtype = "bfloat16"
+device = "cuda"
+prompts_file = "prompts/default.jsonl"
+max_new_bytes = 72
+warmup_runs = 10
+measured_runs = 5
+seed = 1234
+output_dir = "results/fair/olmo-int4-blocks-head"
+optimize = "cuda_graph"
+decode_loop = "minimal"
+
+[quantize]
+target = "blocks+head"
+scheme = "int4_wo"
+group_size = 128

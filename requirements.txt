@@ -1,0 +1,16 @@
+# Install torch first with the CUDA wheel matching your driver, e.g.:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+torch>=2.5
+# Version the Bolmo/Bwen model cards were tested with.
+transformers==4.57.3
+accelerate
+pytest
+# Bolmo's remote code may need extra packages (e.g. mLSTM kernels); add them
+# here once `discover` reveals which, with exact versions.
+xlstm==2.0.6
+mlstm_kernels==2.0.6
+triton-windows==3.2.0.post21 ; sys_platform == "win32"
+# Weight-only quantization task (TASK_local_quant.md): int4 kernel library and parquet reader for the
+# evaluation datasets (WikiText-2 raw rev b08601e0..., CUTE leukas/cute rev 34e3d23f...).
+torchao==0.9.0
+pyarrow==26.0.0

@@ -1,0 +1,37 @@
+# Profiling config for Bolmo 1B.
+# Precedence: built-in defaults < this file < command-line flags.
+
+model_id = "allenai/Bolmo-1B"
+revision = "452690a8cfab1dd1ec27b74f2667632f17a21b46"
+dtype = "bfloat16"
+device = "cuda"
+prompts_file = "prompts/default.jsonl"
+max_new_bytes = 256
+warmup_runs = 2
+measured_runs = 5
+seed = 1234
+output_dir = "results"
+
+# Module whose forward() runs once per model step (prefill, then one call per
+# decode step). "" = the top-level model. Change it only if the report warns that
+# the step module was never called.
+step_module = "model"
+
+# Bolmo has no single wrapper for the global transformer: BolmoModel.forward runs
+# model.layers.N inline, so each global layer is its own match (call count =
+# layers x invocations). The local encoder is matched per child module because
+# its boundary_predictor_module is nested inside it (the harness drops nested
+# matches); pooling/depooling are plain methods and stay in unattributed time.
+# The boundary predictor only runs during prefill in generate().
+# BolmoForCausalLM.generate() calls self.forward(...) and BolmoModel calls
+# self.local_decoder.forward(...) directly, which bypasses nn.Module.__call__ and
+# therefore forward hooks. So step_module is "model" (BolmoModel, invoked via
+# __call__ once per step) and the decoder is matched per child module.
+# lm_head lives in BolmoForCausalLM, outside "model", so it is reported under
+# "outside step forwards".
+[components]
+local_encoder = ['^model\.local_encoder\.(byte_embedding|subword_embedding|layers\.\d+|post_last_block_norm|out_projection)$']
+boundary_predictor = ['^model\.local_encoder\.boundary_predictor_module$']
+global_model = ['^model\.layers\.\d+$']
+local_decoder = ['^model\.local_decoder\.(initial_norm|in_projection|layers\.\d+)$']
+lm_head = ['^lm_head$']

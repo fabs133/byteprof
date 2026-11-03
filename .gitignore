@@ -1,0 +1,28 @@
+# environments and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# private / local only
+.claude/
+archive/
+
+# raw results: released on Zenodo, not in git
+results/
+
+# LaTeX build files
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

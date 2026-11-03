@@ -1,0 +1,10 @@
+[project]
+name = "byteprof"
+version = "0.1.0"
+description = "Per-component latency profiling for byte-level language models"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["real_tokenizer: needs the Bolmo tokenizer in the local HF cache (skipped otherwise)"]

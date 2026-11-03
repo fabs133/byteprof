@@ -1,0 +1,21 @@
+# OLMo 2 1B, static KV cache + manual CUDA graph + minimal loop, bfloat16, context-k8
+model_id = "allenai/OLMo-2-0425-1B"
+revision = "a1847dff35000b4271fa70afc5db10fd29fedbdf"
+dtype = "bfloat16"
+device = "cuda"
+prompts_file = "prompts/default.jsonl"
+max_new_bytes = 72
+warmup_runs = 10
+measured_runs = 5
+seed = 1234
+output_dir = "results/drafting/olmo-bf16-context-k8"
+optimize = "cuda_graph"
+decode_loop = "minimal"
+
+[draft]
+kind = "context"
+ks = [0, 1, 2, 4, 6, 8]
+k_max = 8
+min_len = 1
+min_count = 1
+max_order = 3

@@ -1,0 +1,33 @@
+# Bolmo 1B, P4 (k_max 6, k_cross 32), fp32 activations, skinny quantization (g8)
+model_id = "allenai/Bolmo-1B"
+revision = "452690a8cfab1dd1ec27b74f2667632f17a21b46"
+dtype = "float32"
+device = "cuda"
+prompts_file = "prompts/default.jsonl"
+max_new_bytes = 256
+warmup_runs = 10
+measured_runs = 5
+seed = 1234
+output_dir = "results/skinny/fp32-g8-p4"
+optimize = "cuda_graph"
+optimize_global = true
+decode_loop = "minimal"
+compile_backend = "inductor"
+
+[quantize]
+target = "all"
+scheme = "bf16_wo"
+global_scheme = "int8_wo"
+kernel = "skinny"
+
+[draft]
+kind = "combined"
+ks = [0, 1, 2, 4, 6, 8, 12, 16, 24, 32]
+k_max = 6
+min_len = 3
+min_count = 1
+max_order = 6
+verify = "fused"
+policy = "gated"
+k_cross = 32
+max_patches = 8
