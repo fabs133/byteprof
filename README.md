@@ -6,7 +6,7 @@ Consumer GPU*. The repository holds `byteprof`, a harness that times the compone
 OLMo 2 1B, plus the optimized decode loops, kernels and drafting experiments from 13 hypothesis-driven studies.
 `FINDINGS.md` is the full log of those studies, with the hypotheses as they were written before each measurement.
 
-DOI: to be added
+DOI: [10.5281/zenodo.23924377](https://doi.org/10.5281/zenodo.23924377)
 
 ## Layout
 
@@ -71,3 +71,13 @@ The raw results (~1.1 GB) are released with the Zenodo record, not in git.
 All reported numbers come from one RTX 3060 Ti (8 GB) on Windows, at batch size 1, with greedy decoding and a fixed
 seed. Clocks drift on this machine, so repeated runs can differ by a few percent; the studies rerun any pair that
 differs by more than 5%.
+
+## How to cite
+
+See `CITATION.cff` (GitHub shows a "Cite this repository" button). The Zenodo record is
+[10.5281/zenodo.23924377](https://doi.org/10.5281/zenodo.23924377).
+
+## License
+
+The code is licensed under Apache-2.0 (`LICENSE`, `NOTICE`). The paper, the technical report and the data on
+Zenodo are licensed under CC BY 4.0.

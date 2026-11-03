@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software or the study, please cite it as below."
+title: "The Byte Tax: Decode Speed of Byte-Level Language Models on a Consumer GPU"
+type: software
+authors:
+  - family-names: Rempel
+    given-names: Fabio-Eric
+    orcid: "https://orcid.org/0009-0008-8447-6159"
+license: Apache-2.0
+version: 1.0.0
+repository-code: "https://github.com/fabs133/byteprof"
+doi: 10.5281/zenodo.23924377
+preferred-citation:
+  type: article
+  title: "The Byte Tax: Decode Speed of Byte-Level Language Models on a Consumer GPU"
+  authors:
+    - family-names: Rempel
+      given-names: Fabio-Eric
+      orcid: "https://orcid.org/0009-0008-8447-6159"
+  doi: 10.5281/zenodo.23924377
+  year: 2026
+  publisher:
+    name: Zenodo
